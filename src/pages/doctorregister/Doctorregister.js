@@ -32,7 +32,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export const Register = () => {
+export const Doctorregister = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,7 +49,7 @@ export const Register = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 3,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -121,7 +121,19 @@ export const Register = () => {
                   required
                   fullWidth
                   id="lastName"
-                  label="Адрес"
+                  label="Специализация"
+                  name="lastName"
+                  autoComplete="family-name"
+                  margin="normal"
+                />
+              </Grid>
+              <Grid item xs={12} sm={12} sx={{
+                marginTop: -1, }}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Опыт работы"
                   name="lastName"
                   autoComplete="family-name"
                   margin="normal"
@@ -166,13 +178,13 @@ export const Register = () => {
           
               </RadioGroup>
               </Grid>
-              <FormControlLabel control={<Switch/>} label="Вы доктор?" 
+              <FormControlLabel  control={<Switch defaultChecked/>} label="Вы доктор?" 
               sx={{
                 marginLeft: 1,
                 marginTop: 2,
               }} />
               <Grid item xs={12}>
-              
+                
               </Grid>
             </Grid>
             <Button

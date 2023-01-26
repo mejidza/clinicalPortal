@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import { Register } from './pages/register/Register';
 import { Authorization } from './pages/authorization/Authorization';
+import { Forgotpassword } from './pages/forgotpassword/Forgotpassword';
+import { Doctorregister } from './pages/doctorregister/Doctorregister';
 
 
 const router = createBrowserRouter([
@@ -23,7 +25,16 @@ const router = createBrowserRouter([
   {
     path: "/authorization",
     element: <Authorization/>,
-  }
+  },
+  {
+    path: "/forgotPassword",
+    element: <Forgotpassword/>,
+  },
+  {
+    path: "/registrationDoctor",
+    element: <Doctorregister/>,
+  },
+  
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
