@@ -11,6 +11,8 @@ import { Register } from './pages/register/Register';
 import { Authorization } from './pages/authorization/Authorization';
 import { Forgotpassword } from './pages/forgotpassword/Forgotpassword';
 import { Doctorregister } from './pages/doctorregister/Doctorregister';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 
 const router = createBrowserRouter([
@@ -40,8 +42,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
     <RouterProvider router={router} />
+    </LocalizationProvider>
   </React.StrictMode>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -115,6 +115,7 @@ export const Doctorregister = () => {
                   margin="normal"
                 />
               </Grid>
+              <Grid>
               <Grid item xs={12} sm={12} sx={{
                 marginTop: -1, }}>
                 <TextField
@@ -138,6 +139,7 @@ export const Doctorregister = () => {
                   autoComplete="family-name"
                   margin="normal"
                 />
+              </Grid>
               </Grid>
               </Grid>
               <Grid item xs={12} sm={12} sx={{

@@ -13,26 +13,20 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Switch } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { RadioGroup } from '@mui/material';
 import { Radio } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
+import { Copyright } from '../../components/Copyright';
+import { useState } from 'react';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 
 export const Register = () => {
+  const [data, setData] = useState(null);
+  const [isDoctor, setIsDoctor] = useState(false)
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -42,8 +36,12 @@ export const Register = () => {
     });
   };
 
+  const handleSetDoctor = () => {
+    setIsDoctor(!isDoctor)
+  }
+
   return (
-    <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" >
         
         <CssBaseline />
@@ -64,44 +62,29 @@ export const Register = () => {
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}> 
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12}>
-                <TextField
+                <TextField sx={{marginBottom: 1,}}
                   autoComplete="given-name"
                   name="firstName"
                   required
                   fullWidth
                   id="firstName"
-                  label="Имя"
+                  label="ФИО"
                   autoFocus
                 />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Фамилия"
-                  name="lastName"
-                  autoComplete="family-name"
+             
+              <DatePicker 
+                label="Basic example"
+                value={data}
+                onChange={(newValue) => {
+                setData(newValue);
+                }}
+                renderInput={({ inputRef, inputProps, InputProps }) => (
+                  <Grid item xs={12} sm={12} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <TextField fullWidth ref={inputRef} {...inputProps} />
+                    {InputProps?.endAdornment}
+                  </Grid>
+                )}
                 />
-                 <Grid item xs={12} sm={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Отчество"
-                  name="lastName"
-                  autoComplete="family-name"
-                  margin="normal"
-                />
-              </Grid>
-              {/* <DatePicker
-              label="Дата рождения"
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            /> */}
                <Grid item xs={12} sm={12} sx={{
                 marginTop: -1,
               }}>
@@ -115,7 +98,32 @@ export const Register = () => {
                   margin="normal"
                 />
               </Grid>
+              {isDoctor ?   <Grid>
               <Grid item xs={12} sm={12} sx={{
+                marginTop: -1, }}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Специализация"
+                  name="lastName"
+                  autoComplete="family-name"
+                  margin="normal"
+                />
+              </Grid>
+              <Grid item xs={12} sm={12} sx={{
+                marginTop: -1, }}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Опыт работы"
+                  name="lastName"
+                  autoComplete="family-name"
+                  margin="normal"
+                />
+              </Grid>
+              </Grid>: <Grid item xs={12} sm={12} sx={{
                 marginTop: -1, }}>
                 <TextField
                   required
@@ -126,7 +134,7 @@ export const Register = () => {
                   autoComplete="family-name"
                   margin="normal"
                 />
-              </Grid>
+              </Grid>}
               </Grid>
               <Grid item xs={12} sm={12} sx={{
                 marginTop: -1,
@@ -166,7 +174,7 @@ export const Register = () => {
           
               </RadioGroup>
               </Grid>
-              <FormControlLabel control={<Switch/>} label="Вы доктор?" 
+              <FormControlLabel control={<Switch onChange={handleSetDoctor} checked={isDoctor}/>} label="Вы доктор?" 
               sx={{
                 marginLeft: 1,
                 marginTop: 2,
