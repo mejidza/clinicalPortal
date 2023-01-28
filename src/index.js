@@ -13,6 +13,7 @@ import { Forgotpassword } from './pages/forgotpassword/Forgotpassword';
 import { Doctorregister } from './pages/doctorregister/Doctorregister';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { Homepage } from './pages/Homepage/Homepage';
 
 
 const router = createBrowserRouter([
@@ -33,9 +34,10 @@ const router = createBrowserRouter([
     element: <Forgotpassword/>,
   },
   {
-    path: "/registrationDoctor",
-    element: <Doctorregister/>,
+    path: "/home",
+    element: <Homepage/>,
   },
+
   
 ]);
 
